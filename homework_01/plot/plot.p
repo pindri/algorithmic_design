@@ -1,7 +1,7 @@
 reset                                                                       
 
 
-set key right top
+set key left top
 set xlabel "Matrix size"                                     
 set ylabel "Time [s]"                                             
                                                                              
