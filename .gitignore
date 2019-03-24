@@ -1,4 +1,5 @@
 # ignore all .x files
 *.x
-# ignore 'report' folders
+# ignore 'report' and 'draft' folders
 **/report
+**/draft

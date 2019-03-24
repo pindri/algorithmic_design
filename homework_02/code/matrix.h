@@ -1,26 +1,22 @@
 #ifndef __MATRIX__
+#define __MATRIX__
 
 #include <stdlib.h>
+#include "matrix_struct.h"
 
-int naive_matrix_mult(float **C,
-                        float **A,
-                        float **B,
-                        const size_t A_rows,
-                        const size_t A_cols,
-                        const size_t B_rows,
-                        const size_t B_cols);
+int naive_MATRIX_mult(MATRIX A, MATRIX B, MATRIX C);
 
-float **allocate_matrix(const size_t rows,
-                        const size_t cols);
+float **allocate_matrix(const size_t rows, const size_t cols);
+int **allocate_matrix_int(const size_t rows, const size_t cols);
 
-void deallocate_matrix(float **A, const size_t rows);
+MATRIX allocate_MATRIX(const size_t rows, const size_t cols);
+MATRIX_int allocate_MATRIX_int(const size_t rows, const size_t cols);
 
-int **allocate_matrix_int(const size_t rows,
-                      const size_t cols);
+void deallocate_MATRIX(MATRIX A);
+void deallocate_MATRIX_int(MATRIX_int A);
 
-void deallocate_matrix_int(int **A, const size_t rows);
+void randomly_fill_MATRIX(MATRIX A);
 
-int same_matrix(float **A, const size_t A_rows, const size_t A_cols,
-		float **B, const size_t B_rows, const size_t B_cols);
+int same_MATRIX(MATRIX A, MATRIX B);
 
 #endif // __MATRIX__
