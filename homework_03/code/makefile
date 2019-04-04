@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O0 -ggdb -fopenmp -std=c11 -I$(IDIR)
+CFLAGS = -O0 -ggdb -std=c11 -I$(IDIR)
 EXE = main.x
 BENCHMARK = benchmark.x
 D_FLAG = BENCHMARK
