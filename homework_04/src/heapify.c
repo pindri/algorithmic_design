@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cptimer.h"
+#include "utilities.h"
 
 #define MAX_HEAP_ORDERING >=
 #define MIN_HEAP_ORDERING <=
@@ -8,6 +9,7 @@
 int get_root(const int heap[]) {
   return heap[0];
 }
+
 
 int right_child(const int heap[], const int i, const size_t size) {
   if ( (2*(i+1)+1) <= size ) {
@@ -17,6 +19,7 @@ int right_child(const int heap[], const int i, const size_t size) {
   }
 }
 
+
 int left_child(const int heap[], const int i, const size_t size) {
   if ( 2*(i+1) <= size ) {
     return heap[2*(i+1)-1];
@@ -24,6 +27,7 @@ int left_child(const int heap[], const int i, const size_t size) {
     return 1./0.;
   }
 }
+
 
 int get_right_index(const int heap[], const int i, const size_t size) {
   if ( (2*(i+1)+1) <= size ) {
@@ -33,21 +37,12 @@ int get_right_index(const int heap[], const int i, const size_t size) {
   }
 }
 
+
 int get_left_index(const int heap[], const int i, const size_t size) {
   if ( 2*(i+1) <= size ) {
     return 2*(i+1)-1;
   } else {
     return -1;
-  }
-}
-
-
-void swap(int heap[], const int i, const int m, const size_t size) {
-  if ( i <= size && m <= size ) {
-    int tmp1 = heap[i];
-    int tmp2 = heap[m];
-    heap[i] = tmp2;
-    heap[m] = tmp1;
   }
 }
 
@@ -64,7 +59,7 @@ void heapify(int heap[], const int i, const size_t size) {
   }
 
   if ( i != m ) {
-    swap(heap, i, m, size);
+    Swap(heap, i, m, size);
     heapify(heap, m, size);
   }
 
@@ -84,6 +79,7 @@ void build_heap(int array[], const size_t size) {
     heapify(array, i, size);
   }
 }
+
 
 int is_heap(const int array[], const size_t size) {
   for (size_t i = 0; i <= (size-2)/2; i++) { // From root untill last internal node.
