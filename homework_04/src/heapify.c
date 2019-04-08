@@ -1,17 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "cptimer.h"
 #include "utilities.h"
 
 #define MAX_HEAP_ORDERING >=
 #define MIN_HEAP_ORDERING <=
 
-int get_root(const int heap[]) {
+int GetRoot(const int heap[]) {
   return heap[0];
 }
 
 
-int right_child(const int heap[], const int i, const size_t size) {
+
+int RightChild(const int heap[], const int i, const size_t size) {
   if ( (2*(i+1)+1) <= size ) {
     return heap[2*(i+1)];
   } else {
@@ -20,7 +22,8 @@ int right_child(const int heap[], const int i, const size_t size) {
 }
 
 
-int left_child(const int heap[], const int i, const size_t size) {
+
+int LeftChild(const int heap[], const int i, const size_t size) {
   if ( 2*(i+1) <= size ) {
     return heap[2*(i+1)-1];
   } else {
@@ -29,7 +32,8 @@ int left_child(const int heap[], const int i, const size_t size) {
 }
 
 
-int get_right_index(const int heap[], const int i, const size_t size) {
+
+int GetRightIndex(const int heap[], const int i, const size_t size) {
   if ( (2*(i+1)+1) <= size ) {
     return 2*(i+1);
   } else {
@@ -38,7 +42,8 @@ int get_right_index(const int heap[], const int i, const size_t size) {
 }
 
 
-int get_left_index(const int heap[], const int i, const size_t size) {
+
+int GetLeftIndex(const int heap[], const int i, const size_t size) {
   if ( 2*(i+1) <= size ) {
     return 2*(i+1)-1;
   } else {
@@ -47,10 +52,11 @@ int get_left_index(const int heap[], const int i, const size_t size) {
 }
 
 
-void heapify(int heap[], const int i, const size_t size) {
+
+void Heapify(int heap[], const int i, const size_t size) {
   int m = i;
 
-  int j[2] = {get_left_index(heap, i, size), get_right_index(heap, i, size)};
+  int j[2] = {GetLeftIndex(heap, i, size), GetRightIndex(heap, i, size)};
 
   for (int k = 0; k <= 1; ++k) {
     if (j[k] <= size && heap[j[k]] MAX_HEAP_ORDERING heap[m]) {
@@ -60,31 +66,33 @@ void heapify(int heap[], const int i, const size_t size) {
 
   if ( i != m ) {
     Swap(heap, i, m, size);
-    heapify(heap, m, size);
+    Heapify(heap, m, size);
   }
 
 }
 
 
-void remove_minimum(int heap[], int* size) {
+
+void RemoveMinimum(int heap[], int* size) {
   heap[0] = heap[*size - 1]; 
   *size = *size -1;
-  heapify(heap, 0, *size);
+  Heapify(heap, 0, *size);
 }
 
 
 
-void build_heap(int array[], const size_t size) {
+void BuildHeap(int array[], const size_t size) {
   for (int i = (size/2 - 1); i >= 0; i--) { // Bottom up on each subtree.
-    heapify(array, i, size);
+    Heapify(array, i, size);
   }
 }
 
 
-int is_heap(const int array[], const size_t size) {
+
+int IsHeap(const int array[], const size_t size) {
   for (size_t i = 0; i <= (size-2)/2; i++) { // From root untill last internal node.
-    if (left_child(array, i, size) < array[i]) return 0; // If left child is greater.
-    if ( get_right_index(array, i, size) != -1 && array[2*(i+1)] < array[i] ) return 0;
+    if (LeftChild(array, i, size) < array[i]) return 0; // If left child is greater.
+    if ( GetRightIndex(array, i, size) != -1 && array[2*(i+1)] < array[i] ) return 0;
   }
   return 1;
 }

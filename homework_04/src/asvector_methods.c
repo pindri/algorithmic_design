@@ -1,41 +1,49 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include "heapify.h"
-#include "utilities.h"
-#include "asvector.h"
+#include <stdlib.h> // malloc, realloc, free.
 
-int InitAsVector(AsVector* v, size_t capacity) {
+#include "macro.h"  // LINE macro.
+#include "asvector.h"  // AsVector struc.
+
+
+void InitAsVector(AsVector* v, size_t capacity) {
 
   v -> data = malloc( capacity * sizeof *(v->data) );
-  if (!v -> data) return -1;
-
-  v->size = 0;
-  v->max_capacity = capacity;
-  return 0;
+  if (!v -> data) {
+    printf("ERROR, could not reallocate. %f", 1./0.);
+  } else {
+    v->size = 0;
+    v->max_capacity = capacity;
+  }
 }
+
+
 
 void ResizeAsVector(AsVector* v, size_t new_size) {
-  //printf("resizing\n");
   float* tmp; // so that if realloc returns null, it's safer
   tmp = realloc(v -> data, new_size * sizeof *(v->data) );
-  //v -> data = (float*)realloc(v -> data, new_size);
   // if not tmp could not realloc, else
-  v -> data = tmp;
-  v -> max_capacity = new_size;
+  if (!tmp) {
+    printf("ERROR, could not reallocate. %f", 1./0.);
+  } else {
+    v -> data = tmp;
+    v -> max_capacity = new_size;
+  }
 
 }
 
+
+
 void PushBackAsVector(AsVector* v, float value) {
-  // realloc if vector is full.
+  // Realloc if vector is full.
   if (v -> size == v-> max_capacity) {
     ResizeAsVector(v, 2*(v->max_capacity));
   }
 
-  //printf("some info. max_capacity = %ld, size = %ld\n", v->max_capacity, v->size);
   v -> data[v -> size] = value;
   v -> size += 1;
 }
+
+
 
 void PrintAsVector(const AsVector v) {
   if (v.size == 0) {
@@ -47,6 +55,8 @@ void PrintAsVector(const AsVector v) {
     LINE;
   }
 }
+
+
 
 void DeleteAsVector(AsVector* v) {
   free(v->data);

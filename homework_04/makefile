@@ -1,14 +1,21 @@
 CC = gcc
 CFLAGS = -O0 -ggdb -std=c11 -I$(IDIR)
 EXE = main.x
+BENCHMARK = bechmark.x
+D_FLAG = BENCHMARK
 
-SRC = src/main.c src/sort.c src/asvector_methods.c src/utilities.c src/heapify.c src/cptimer.c
+SRC = $(wildcard src/*.c)
 IDIR = include
 
 all: $(EXE)
 
+benchmark: $(BENCHMARK)
+
 $(EXE): $(SRC)
 	$(CC) $(CFLAGS) -o $@ $^
+
+$(BENCHMARK): $(SRC)
+	$(CC) $(CFLAGS) -o $@ $^ -D$(D_FLAG)
 
 .PHONY: clean
 

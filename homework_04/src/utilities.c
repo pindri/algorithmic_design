@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "asvector.h"
+#include "macro.h"
 
-#define MAX_ELEM_VALUE 20
 
 
-
+/**
+ * Computes base^exp, returning an integer.
+ */
 int IntPow(int base, int exp) {
   int result = 1;
   while (exp) {
@@ -16,7 +19,9 @@ int IntPow(int base, int exp) {
   return result;
 }
 
-
+/**
+ * Prints an integer array, requires its size as input.
+ */
 void PrintArray(const int array[], const size_t size) {
   for (size_t i = 0; i < size; i++) {
     printf("%d ", array[i]);
@@ -24,7 +29,9 @@ void PrintArray(const int array[], const size_t size) {
   printf("\n");
 }
 
-
+/**
+ * Prints a float array, requires its size as input.
+ */
 void PrintFloatArray(const float array[], const size_t size) {
   for (size_t i = 0; i < size; i++) {
     printf("%.3f ", array[i]);
@@ -32,14 +39,18 @@ void PrintFloatArray(const float array[], const size_t size) {
   printf("\n");
 }
 
-
+/**
+ * Randomly fills an integer array with positive values <= MAX_ELEM_VALUE.
+ */
 void RandomlyFillArray(int array[], const size_t size) {
   for (int i = 0; i < size; i++) {
     array[i] = rand() % MAX_ELEM_VALUE;
   }
 }
 
-
+/**
+ * Randomly fills an integer array with positive values of n digits.
+ */
 void RandomNDigitsFillArray(int array[], const size_t size, const int n) {
   for (int i = 0; i < size; i++) {
     array[i] = rand() % ( IntPow(10, n) - IntPow(10, n-1) ) + IntPow(10, n-1);
@@ -47,30 +58,40 @@ void RandomNDigitsFillArray(int array[], const size_t size, const int n) {
 }
 
 
+/**
+ * Randomly fills an integer array with positive values drawn from a
+ * uniform distribution in [0,1].
+ */
 void UniformFillArray(float array[], const size_t size) {
   for (int i = 0; i < size; i++) {
     array[i] = (float)rand()/(float)(RAND_MAX/1.);
   }
 }
 
-
+/**
+ * Fills an integer array with zeroes.
+ */
 void ZeroFillArray(int array[], const size_t size) {
   for (int i = 0; i < size; i++) {
     array[i] = 0;
   }
 }
 
-
-void Swap(int heap[], const int i, const int m, const size_t size) {
-  if ( i <= size && m <= size ) {
-    int tmp1 = heap[i];
-    int tmp2 = heap[m];
-    heap[i] = tmp2;
-    heap[m] = tmp1;
+/**
+ * Swaps array[i] and array [m].
+ */
+void Swap(int array[], const int i, const int m, const size_t size) {
+  if (i <= size && m <= size) {
+    int tmp1 = array[i];
+    int tmp2 = array[m];
+    array[i] = tmp2;
+    array[m] = tmp1;
   }
 }
 
-
+/**
+ * Swaps array[i] and array [m].
+ */
 void SwapFloat(float array[], const int i, const int m, const size_t size) {
   if (i <= size && m <= size) {
     float tmp1 = array[i];
@@ -78,4 +99,22 @@ void SwapFloat(float array[], const int i, const int m, const size_t size) {
     array[i] = tmp2;
     array[m] = tmp1;
   }
+}
+
+
+int MaxElem(int array[], const size_t size) {
+  int max = array[0];
+  for(size_t i = 0; i < size; i++) {
+    if (array[i] > max) max = array[i];
+  }
+  return max;
+}
+
+
+int MinElem(int array[], const size_t size) {
+  int min = array[0];
+  for(size_t i = 0; i < size; i++) {
+    if (array[i] < min) min = array[i];
+  }
+  return min;
 }

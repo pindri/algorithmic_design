@@ -1,7 +1,7 @@
 #ifndef ASVECTOR_METHODS_H_
 #define ASVECTOR_METHODS_H_
 
-int InitAsVector(AsVector* v, size_t capacity);
+void InitAsVector(AsVector* v, size_t capacity);
 
 void ResizeAsVector(AsVector* v, size_t new_size);
 
