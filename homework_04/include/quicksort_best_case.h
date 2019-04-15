@@ -1,7 +1,6 @@
 #ifndef QUICKSORT_BEST_CASE_H_
 #define QUICKSORT_BEST_CASE_H_
 
-
 void ReverseArray(int array[], const size_t size);
 
 void OrderFill(int array[], const size_t size);

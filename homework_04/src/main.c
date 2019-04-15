@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
 #include "utilities.h"
 #include "sort.h"
 #include "heapify.h"
@@ -16,9 +17,9 @@ int main() {
 
 #ifdef BENCHMARK
 
-  /**************************************
-   * Benchmarking best and worst cases. *
-   **************************************/
+  /*************************************
+   * Benchmarking best and worst cases.*
+   *************************************/
 
   double start_timing, end_timing;
 
@@ -38,8 +39,8 @@ int main() {
     ReverseArray(bench, bench_size); // Compute reversely order array.
     start_timing = Seconds();
       InsertionSort(bench, bench_size);
-   end_timing = Seconds() - start_timing;
-   fprintf(insf_w, "%d\t%f\n", dim, end_timing);
+    end_timing = Seconds() - start_timing;
+    fprintf(insf_w, "%d\t%f\n", dim, end_timing);
     
     
     // QUICKSORT TAKES N^2 FOR WORST CASE
@@ -119,7 +120,6 @@ int main() {
 
   // COUNTING SORT
   // assumes uniform distribution and bounded domain for the array values
-  // NOTE: SEGFAULT for size 20 and maxelem 50, check
   LINE;
   
   printf("Counting Sort\n");
@@ -170,7 +170,7 @@ int main() {
   int prediction = Select(test, position, 0, size_test - 1, size_test);
 
   HeapSort(test, size_test);
-  printf("The value in %d should be %d: it is %d\n",position, prediction, test[position]);
+  printf("The value in position %d should be %d: it is %d\n",position, prediction, test[position]);
 
 #endif
 

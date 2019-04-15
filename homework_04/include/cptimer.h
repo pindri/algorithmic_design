@@ -3,5 +3,4 @@
 
 double Seconds();
 
-
 #endif // __TIMER__

@@ -7,6 +7,8 @@
 #define MAX_HEAP_ORDERING >=
 #define MIN_HEAP_ORDERING <=
 
+
+
 int GetRoot(const int heap[]) {
   return heap[0];
 }

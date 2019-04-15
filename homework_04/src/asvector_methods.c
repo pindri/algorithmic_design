@@ -1,15 +1,17 @@
 #include <stdio.h>
-#include <stdlib.h> // malloc, realloc, free.
+#include <stdlib.h> 
+#include "macro.h" 
+#include "asvector.h"  
 
-#include "macro.h"  // LINE macro.
-#include "asvector.h"  // AsVector struc.
 
-
+/*
+ * Initialises the AsVector struct
+ */
 void InitAsVector(AsVector* v, size_t capacity) {
 
   v -> data = malloc( capacity * sizeof *(v->data) );
   if (!v -> data) {
-    printf("ERROR, could not reallocate. %f", 1./0.);
+    printf("ERROR, could not allocate. %f", 1./0.);
   } else {
     v->size = 0;
     v->max_capacity = capacity;
@@ -17,7 +19,9 @@ void InitAsVector(AsVector* v, size_t capacity) {
 }
 
 
-
+/*
+ * Reallocates a AsVector struct, with size new_size
+ */
 void ResizeAsVector(AsVector* v, size_t new_size) {
   float* tmp; // so that if realloc returns null, it's safer
   tmp = realloc(v -> data, new_size * sizeof *(v->data) );

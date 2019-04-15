@@ -3,7 +3,6 @@
 
 #include "asvector.h"
 
-
 void InsertionSort(int array[], const size_t size);
 
 int Partition(int array[], int i, int j, int p, const size_t size);
