@@ -76,7 +76,7 @@ void Heapify(int heap[], const int i, const size_t size) {
 
 
 void RemoveMinimum(int heap[], int* size) {
-  heap[0] = heap[*size - 1]; 
+  heap[0] = heap[*size - 1];
   *size = *size -1;
   Heapify(heap, 0, *size);
 }

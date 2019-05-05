@@ -1,7 +1,7 @@
 #ifndef __TIMER__
 #define __TIMER__
 
-double seconds();
+double Seconds();
 
 
 #endif // __TIMER__

@@ -2,9 +2,9 @@
 #include <sys/resource.h>
 #include <unistd.h>
 
-double seconds()
+double Seconds()
 
-/* Return the second elapsed since Epoch (00:00:00 UTC, January 1, 1970)                                                                     
+/* Return the second elapsed since Epoch (00:00:00 UTC, January 1, 1970)
  */
 
 {
