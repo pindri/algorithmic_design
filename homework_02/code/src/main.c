@@ -39,9 +39,6 @@ int main(int argc, char* argv[]) {
   for (size_t i = 0; i < n+1; i++) {
     fscanf(f, "%d", &P[i]);
   }
-  for (size_t i = 0; i < n+1; i++) {
-    printf("%d ", P[i]);
-  }
 
   // Computes the S matrix for the given n matrices.
   INT_MATRIX S = MatrixChain(P,n);
@@ -53,11 +50,12 @@ int main(int argc, char* argv[]) {
 #endif
 
   // Allocates and fills the array of matrices with random values.
-  FLOAT_MATRIX L[n];
+  INT_MATRIX L[n];
   for (size_t i = 0; i < n; i++){
-    L[i] = AllocateFLOAT_MATRIX(P[i],P[i+1]);
-    RandomlyFillFLOAT_MATRIX(L[i]);
+    L[i] = AllocateINT_MATRIX(P[i],P[i+1]);
+    RandomlyFillINT_MATRIX(L[i]);
   }
+
 
 
   /**** NAIVE MULT AND TIMING ****/
@@ -66,8 +64,7 @@ int main(int argc, char* argv[]) {
   int n_ops_naive = 0;
 
   clock_gettime(CLOCK_REALTIME, &b_time);
-    FLOAT_MATRIX naive_result = NaiveMult(L, P, n, &n_ops_naive);
-    printf("dim of naive: %d by %d", naive_result.row, naive_result.col);
+    INT_MATRIX naive_result = NaiveMult(L, P, n, &n_ops_naive);
   clock_gettime(CLOCK_REALTIME, &e_time);
 
 #ifndef BENCHMARK
@@ -75,18 +72,22 @@ int main(int argc, char* argv[]) {
   printf("Number of operations: %d\n", n_ops_naive);
 #endif
 
+
+
   /**** CHAIN MULT AND TIMING ****/
 
   int n_ops_chain = 0;
 
   clock_gettime(CLOCK_REALTIME, &b_time);
-    FLOAT_MATRIX chain_result = ChainMult(S, 1, n , L, &n_ops_chain);
+    INT_MATRIX chain_result = ChainMult(S, 1, n , L, &n_ops_chain);
   clock_gettime(CLOCK_REALTIME, &e_time);
 
 #ifndef BENCHMARK
   printf("\nCHAIN SOLUTION\nExecution time: %lfs\n", get_execution_time(b_time, e_time));
   printf("Number of operations: %d\n", n_ops_chain);
 #endif
+
+
 
   /**** COMPARISON ****/
 
@@ -97,12 +98,14 @@ int main(int argc, char* argv[]) {
   printf("%d\t%f\t%d\n", n, (float)n_ops_chain/(float)n_ops_naive, SameMATRIX(naive_result, chain_result));
 #endif
 
+
+
   // Freeing resources.
-  DellocateFLOAT_MATRIX(chain_result);
-  DellocateFLOAT_MATRIX(naive_result);
+  DellocateINT_MATRIX(chain_result);
+  DellocateINT_MATRIX(naive_result);
 
   for (unsigned int i = 0; i < n ; i++){
-    DellocateFLOAT_MATRIX(L[i]);
+    DellocateINT_MATRIX(L[i]);
   }
 
   DellocateINT_MATRIX(S);

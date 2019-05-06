@@ -4,10 +4,10 @@
 
 
 
-void MatrixChainAux(int P[], FLOAT_MATRIX M, INT_MATRIX S, unsigned int i, unsigned int j) {
+void MatrixChainAux(int P[], INT_MATRIX M, INT_MATRIX S, unsigned int i, unsigned int j) {
 
-  M.matrix[i][j] = 1.0/0.0; // Setting element to inf
-  float q = 0.0;
+  M.matrix[i][j] = 10000000; // Setting element to inf
+  int q = 0;
   for (unsigned int k = i; k <= j-1; k++){
 
     q = M.matrix[i][k] + M.matrix[k+1][j] + P[i]*P[k+1]*P[j+1]; // Compensates the different
@@ -25,7 +25,7 @@ void MatrixChainAux(int P[], FLOAT_MATRIX M, INT_MATRIX S, unsigned int i, unsig
 
 INT_MATRIX MatrixChain(int P[], const unsigned int n){
 
-  FLOAT_MATRIX M = AllocateFLOAT_MATRIX(n,n);
+  INT_MATRIX M = AllocateINT_MATRIX(n,n);
   INT_MATRIX S = AllocateINT_MATRIX(n-1,n-1); // Indexes should be (1..n-1, 2..n)
 
   for (unsigned int i = 0; i < n; ++i){ // Set diagonal elements to zero
@@ -57,7 +57,7 @@ INT_MATRIX MatrixChain(int P[], const unsigned int n){
   }
 #endif
 
-  DellocateFLOAT_MATRIX(M);
+  DellocateINT_MATRIX(M);
 
   return S;
 }
@@ -79,24 +79,24 @@ void PrintParens(INT_MATRIX S, unsigned int i, unsigned int j){
 
 
 // ChainMult(S,1,n) for the optimal solution.
-FLOAT_MATRIX ChainMult(INT_MATRIX S, int i, int j, FLOAT_MATRIX L[], int* n_ops) {
+INT_MATRIX ChainMult(INT_MATRIX S, int i, int j, INT_MATRIX L[], int* n_ops) {
 
   if (i == j) {
-    FLOAT_MATRIX result_ = AllocateFLOAT_MATRIX(L[i-1].row, L[i-1].col);
-    CopyFLOAT_MATRIX(L[i-1], result_);
+    INT_MATRIX result_ = AllocateINT_MATRIX(L[i-1].row, L[i-1].col);
+    CopyINT_MATRIX(L[i-1], result_);
     return result_;  // Return the i-th matrix.
   } else {
     int k = S.matrix[i-1][j-2];
 
-    FLOAT_MATRIX X = ChainMult(S, i, k, L, n_ops);
-    FLOAT_MATRIX Y = ChainMult(S, k + 1, j, L, n_ops);
-    FLOAT_MATRIX result = AllocateFLOAT_MATRIX(X.row, Y.col);
+    INT_MATRIX X = ChainMult(S, i, k, L, n_ops);
+    INT_MATRIX Y = ChainMult(S, k + 1, j, L, n_ops);
+    INT_MATRIX result = AllocateINT_MATRIX(X.row, Y.col);
 
-    NaiveFLOAT_MATRIXMult(X,Y,result);
+    NaiveINT_MATRIXMult(X,Y,result);
     *n_ops += X.row * X.col * Y.col; // Update number of operations.
 
-    DellocateFLOAT_MATRIX(X);
-    DellocateFLOAT_MATRIX(Y);
+    DellocateINT_MATRIX(X);
+    DellocateINT_MATRIX(Y);
 
     return result;
   }
