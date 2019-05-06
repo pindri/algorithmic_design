@@ -47,12 +47,15 @@ INT_MATRIX MatrixChain(int P[], const unsigned int n){
     }
   }
 
+#ifndef BENCHMARK
+  printf("\nMatrix S:\n");
   for (unsigned int i = 0; i < n-1; i++){
     printf("\n");
     for(unsigned int j = 0; j < n-1; j++){
       printf("%d\t", S.matrix[i][j]);
     }
   }
+#endif
 
   DellocateFLOAT_MATRIX(M);
 

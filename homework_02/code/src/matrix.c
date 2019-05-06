@@ -87,8 +87,8 @@ int SameMATRIX(FLOAT_MATRIX A, FLOAT_MATRIX B) {
 
   for (size_t i=0; i<A.row; i++) {
     for (size_t j=0; j<A.col; j++) {
-      if (abs(A.matrix[i][j] - B.matrix[i][j]) > 10) {
-        printf("[%ld][%ld]",i,j);
+      if (abs(A.matrix[i][j] - B.matrix[i][j]) > 1) {
+        //printf("%d",abs(A.matrix[i][j] - B.matrix[i][j]));
         return 0;
       }
     }
@@ -120,7 +120,7 @@ FLOAT_MATRIX NaiveMult(FLOAT_MATRIX L[], int P[], unsigned int n, int* n_ops) {
     DellocateFLOAT_MATRIX(R[i]);
   }
 
-  return R[4];
+  return R[n-2];
 }
 
 
