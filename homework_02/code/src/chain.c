@@ -6,13 +6,14 @@
 
 void MatrixChainAux(int P[], INT_MATRIX M, INT_MATRIX S, unsigned int i, unsigned int j) {
 
-  M.matrix[i][j] = 10000000; // Setting element to inf
+  M.matrix[i][j] = ~(1<<31); // Setting element to "inf".
   int q = 0;
   for (unsigned int k = i; k <= j-1; k++){
 
     q = M.matrix[i][k] + M.matrix[k+1][j] + P[i]*P[k+1]*P[j+1]; // Compensates the different
 
-    if (q < M.matrix[i][j]){ // treatments for the indices
+    // Using boolean flag to deal with inf.
+    if (q < M.matrix[i][j] || M.matrix[i][j] == ~(1<<31)){
       M.matrix[i][j] = q;
       S.matrix[i][j-1] = k+1; // To compensated for the redefined indices
     }
