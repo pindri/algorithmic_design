@@ -41,8 +41,8 @@ int main() {
       InsertionSort(bench, bench_size);
     end_timing = Seconds() - start_timing;
     fprintf(insf_w, "%d\t%f\n", dim, end_timing);
-    
-    
+
+
     // QUICKSORT TAKES N^2 FOR WORST CASE
     ZeroFillArray(bench, bench_size); // Compute reversely order array.
     start_timing = Seconds();
@@ -58,8 +58,8 @@ int main() {
       InsertionSort(bench, bench_size);
    end_timing = Seconds() - start_timing;
    fprintf(insf_b, "%d\t%f\n", dim, end_timing);
-    
-    
+
+
     // QUICKSORT TAKES NLOGN FOR BEST CASE
     BestQuick(bench, bench_size);
     start_timing = Seconds();
@@ -121,7 +121,7 @@ int main() {
   // COUNTING SORT
   // assumes uniform distribution and bounded domain for the array values
   LINE;
-  
+
   printf("Counting Sort\n");
   RandomlyFillArray(test, size_test);
   PrintArray(test, size_test);
@@ -135,7 +135,7 @@ int main() {
   LINE;
 
   int n_digits = 3;
-  
+
   printf("Radix Sort\n");
   RandomNDigitsFillArray(test, size_test, n_digits);
   PrintArray(test, size_test);
@@ -151,7 +151,7 @@ int main() {
   int size_bucket = LENGTH(bucket);
 
   printf("Bucket Sort\n");
-  UniformFillArray(bucket, size_bucket); 
+  UniformFillArray(bucket, size_bucket);
   PrintFloatArray(bucket, size_bucket);
 
   BucketSort(bucket, size_bucket);
