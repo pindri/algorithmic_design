@@ -43,18 +43,6 @@ void InitSSSP(Graph* g) {
 }
 
 
-int* Adj(Graph* g, Vertex* u) {
-  size_t index = u -> index;
-  int* adj = (int*)malloc(sizeof(int) * g -> size);
-  for (size_t i = 0; i < g -> size; i++) {
-    if ( (g -> weights).matrix[index][i] != 0 ) { // If non-null weight.
-      adj[i] = 1; // Index i is part of the adjecent Vertices.
-    } else {
-      adj[i] = 0; // Non connected Vertices will have -1.
-    }
-  }
-  return adj;
-}
 
 // Should update distance editing queue and the graph vertex.
 void UpdateDistance(Vertex* vert_q, Vertex* v, int new_w) {
@@ -67,9 +55,10 @@ void UpdateDistance(Vertex* vert_q, Vertex* v, int new_w) {
 void ShortestPath(Graph* g, size_t to) {
   Vertex v = g -> v[to]; // Destination vertex.
   int total_distance = v.d;
+  printf("Going to: %ld. Total distance: %d\t\t", to, total_distance);
   while (v.pred != NULL) {
-    printf("%d <- ", v.index);
+    printf("%ld <- ", v.index);
     v = *v.pred;
   }
-  printf("%d;\ntotal distance: %d\n\n", v.index, total_distance);
+  printf("%ld\n", v.index);
 }

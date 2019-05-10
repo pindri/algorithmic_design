@@ -36,7 +36,6 @@ void RandomlyFillIntMatrix(IntMatrix A)
 }
 
 void RandomlyFillSparseIntMatrix(IntMatrix A, int s) {
- int elem = 0;
  for (size_t i=0; i< A.size; i++) {
    for (size_t j=0; j< A.size; j++) {
      if (rand() % s == 0) { // Encodes sparsity.

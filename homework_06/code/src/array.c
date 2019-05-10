@@ -16,7 +16,7 @@ void FreeQArray(QArray* q) {
 QArray BuildQArray(Graph* g) {
 
   Vertex* v = (Vertex*)malloc(sizeof(Vertex) * g -> size);
-  int* extracted = (int*)malloc(sizeof(int) * g -> size);
+  size_t* extracted = (size_t*)malloc(sizeof(size_t) * g -> size);
 
   for(size_t i = 0; i < g -> size; i++) {
     v[i] = g -> v[i];
@@ -63,13 +63,11 @@ void DijkstraArray(Graph* g, size_t s) { // 's' is the starting vertex.
   QArray q = BuildQArray(g);
 
   Vertex u; // Will contain the minimum Vertex for the minimum.
-  int steps = 0;
+  size_t steps = 0; // Must be size_t since it cycles through a QArray.
 
   while(steps < g -> size) { // When start == size, only one element left.
     u = ExtractMinQArray(&q); // u.index cointains the index of the minimum in g!
 
-    int* adj = Adj(g, &u); // Contains weights too
-    int i = 0;
     for (size_t i = 0; i < g -> size; i++) {
       // If non-null weight, then neighbour.
       if ( (g -> weights).matrix[u.index][i] != 0 ) {
@@ -77,8 +75,6 @@ void DijkstraArray(Graph* g, size_t s) { // 's' is the starting vertex.
         Relax(&q, &u, g, w, i);
       }
     }
-    printf("");
-    free(adj);
     steps += 1;
   }
 

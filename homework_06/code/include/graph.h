@@ -1,6 +1,8 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include "struct.h"
+
 void InitializeGraph(Graph* g, IntMatrix weight_matrix);
 void ResetGraph(Graph* g);
 void DeallocateGraph(Graph* g);

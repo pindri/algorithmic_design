@@ -10,7 +10,7 @@ typedef struct IntMatrix { // Note, square matrix.
 typedef struct Vertex {
   int d; // Distance.
   struct Vertex* pred; // Preceding Vertex.
-  int index; // From 0 to size-q of the graph, labels Vertices, necessary
+  size_t index; // From 0 to size-q of the graph, labels Vertices, necessary
              // because swapping things might move the vertex.
 } Vertex;
 
@@ -24,9 +24,22 @@ typedef struct Graph {
 
 typedef struct QArray {
   Vertex* v; // Array of Vertices.
-  int* extracted; // To keep note of already extracted minimums.
+  size_t* extracted; // To keep note of already extracted minimums.
   size_t size;
 } QArray;
+
+
+typedef struct HeapElem {
+  size_t index; // Index to the element contained.
+  size_t key; // Key, heap ordering done on this.
+} HeapElem;
+
+
+typedef struct QHeap {
+  HeapElem* h; // Will only contain the indices of a vector of Vertex.
+  size_t size;
+  size_t max_capacity;
+} QHeap;
 
 
 #endif // STRUCT_H
