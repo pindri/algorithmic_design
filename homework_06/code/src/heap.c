@@ -3,6 +3,7 @@
 
 #include "graph.h"
 #include "struct.h"
+#include "matrix.h"
 
 
 #define MAX_HEAP_ORDERING >=
@@ -73,8 +74,8 @@ HeapElem ExtractMinQHeap(QHeap* q) {
 
 
 void BuildHeap(QHeap* q) {
-  size_t size = q -> size;
-  for (size_t i = 0; i >= (size/2 - 1); i++) { // Bottom up on each subtree.
+  size_t size = q -> max_capacity;
+  for (size_t i = 0; i <= (size/2 - 1); i++) { // Bottom up on each subtree.
     Heapify(q, (size/2 - 1) - i);
   }
 }
@@ -124,6 +125,7 @@ void DijkstraHeap(Graph* g, size_t s) { // 's' is the starting vertex.
       if ( (g -> weights).matrix[u.index][i] != 0 ) {
         int w = (g -> weights).matrix[u.index][i];
         RelaxUpdateHeap(&q, &u, g, w, i);
+
       }
     }
   }

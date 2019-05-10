@@ -8,7 +8,6 @@ void ResetGraph(Graph* g);
 void DeallocateGraph(Graph* g);
 void InitSSSP(Graph* g);
 int* Adj(Graph* g, Vertex* u);
-void UpdateDistance(Vertex* vert_q, Vertex* v, int new_w);
 void ShortestPath(Graph* g, size_t to);
 
 

@@ -44,12 +44,6 @@ void InitSSSP(Graph* g) {
 
 
 
-// Should update distance editing queue and the graph vertex.
-void UpdateDistance(Vertex* vert_q, Vertex* v, int new_w) {
-  v -> d = new_w;
-  vert_q -> d = new_w;
-}
-
 
 
 void ShortestPath(Graph* g, size_t to) {
