@@ -46,7 +46,7 @@ Vertex ExtractMinQArray(QArray* q) {
 }
 
 
-// Should update distance editing queue and the graph vertex.
+
 void UpdateDistance(Vertex* vert_q, Vertex* v, int new_w) {
   v -> d = new_w;
   vert_q -> d = new_w;
@@ -59,6 +59,7 @@ void Relax(QArray* q, Vertex* u, Graph* g, int w, size_t i) {
     (g -> v[i]).pred = &(g -> v[pred_index]);
   }
 }
+
 
 
 void DijkstraArray(Graph* g, size_t s) { // 's' is the starting vertex.

@@ -30,8 +30,8 @@ typedef struct QArray {
 
 
 typedef struct HeapElem {
-  size_t index; // Index to the element contained.
-  size_t key; // Key, heap ordering done on this.
+  size_t index;  // Index to the element contained.
+  int* d; // Key, heap ordering done on this.
 } HeapElem;
 
 
@@ -40,6 +40,8 @@ typedef struct QHeap {
   size_t size;
   size_t max_capacity;
 } QHeap;
+
+
 
 
 #endif // STRUCT_H
