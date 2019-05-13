@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 #include "graph.h"
 #include "struct.h"
@@ -97,7 +98,7 @@ void DijkstraHeap(Graph* g, size_t s) { // 's' is the starting vertex.
   // Initialise distances, providing a fixed reference.
   int distance[size];
   for (size_t i = 0; i < size; i++ ) {
-    distance[i] = ~(1<<31);
+    distance[i] = INT_MAX;
   }
 
   // Create a QHeap of correct size, fill it, and set the s element at distance zero.

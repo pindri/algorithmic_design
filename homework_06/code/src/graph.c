@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 #include "struct.h"
 #include "matrix.h"
@@ -13,7 +14,7 @@ void InitializeGraph(Graph* g, IntMatrix weight_matrix) {
   g -> weights = weight_matrix;
 
   for(size_t i = 0; i < size; i++) {
-    (g -> v[i]).d = ~(1<<31); // MANAGE INF!
+    (g -> v[i]).d = INT_MAX; // MANAGE INF!
     (g -> v[i]).index = i; // Every vertex is labelled.
     (g -> v[i]).pred = NULL;
   }
@@ -23,7 +24,7 @@ void ResetGraph(Graph* g) {
   size_t size;
   size = g -> size;
   for(size_t i = 0; i < size; i++) {
-    (g -> v[i]).d = ~(1<<31); // MANAGE INF!
+    (g -> v[i]).d = INT_MAX; // MANAGE INF!
     (g -> v[i]).pred = NULL;
   }
 }
@@ -37,7 +38,7 @@ void DeallocateGraph(Graph* g) {
 
 void InitSSSP(Graph* g) {
   for(size_t i = 0; i < g -> size; i++) {
-    (g -> v[i]).d = ~(1<<31); // MANAGE INF!
+    (g -> v[i]).d = INT_MAX; // MANAGE INF!
     (g -> v[i]).pred = NULL;
   }
 }

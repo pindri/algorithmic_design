@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 #include "struct.h"
 #include "graph.h"
@@ -31,7 +32,7 @@ QArray BuildQArray(Graph* g) {
 
 
 Vertex ExtractMinQArray(QArray* q) {
-  int min = ~(1<<31); // The default minimum is inf.
+  int min = INT_MAX; // The default minimum is inf.
   int pos = 0;
   for(size_t i = 0; i < q -> size; i++) {
     if ( ((q -> v[i]).d <= min)  && (q -> extracted[i] == 0) )  {
