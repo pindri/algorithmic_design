@@ -56,8 +56,8 @@ int main() {
     InsertionSort(bench, bench_size);
     start_timing = Seconds();
       InsertionSort(bench, bench_size);
-   end_timing = Seconds() - start_timing;
-   fprintf(insf_b, "%d\t%f\n", dim, end_timing);
+    end_timing = Seconds() - start_timing;
+    fprintf(insf_b, "%d\t%f\n", dim, end_timing);
 
 
     // QUICKSORT TAKES NLOGN FOR BEST CASE
@@ -127,11 +127,12 @@ int main() {
   PrintArray(test, size_test);
   int B[size_test]; // The sorted vector will be stored here.
 
-  CountingSort(test, B, 30, size_test);
+  CountingSort(test, B, MAX_ELEM_VALUE, size_test);
   PrintArray(B, size_test);
 
 
   // RADIX SORT
+  // Assumes n_digits to be at most 10.
   LINE;
 
   int n_digits = 3;
