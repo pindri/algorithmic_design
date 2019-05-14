@@ -4,7 +4,7 @@ EXE = main.x
 BENCHMARK = benchmark.x
 D_FLAG = BENCHMARK
 
-SRC = src/main.c src/heapify.c src/cptimer.c
+SRC = src/main.c src/heap.c src/cptimer.c
 IDIR = include
 
 

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cptimer.h"
-#include "heapify.h"
+#include "heap.h"
 
 #define MAX_ELEM_VALUE 1000000
 #define LENGTH(x) (sizeof(x)/sizeof((x)[0]))
@@ -25,7 +25,7 @@ int main() {
       RemoveMinimum(test, &size_test);
     double end_Heapify = Seconds();
 
-    printf("%d\t%f\t%d\t%f\t%d\n", dim, end_build-start_build, IsHeap(test, size_test), end_Heapify - start_Heapify, IsHeap(test, size_test));
+    printf("%d\t%f\t%d\t%f\t%d\n", dim, end_build-start_build, IsMinHeap(test, size_test), end_Heapify - start_Heapify, IsMinHeap(test, size_test));
   }
 
 #else
@@ -35,7 +35,7 @@ int main() {
 
   printf("root is %d\n", GetRoot(heap));
   printf("size is %d\n", size);
-  printf("is heap? %d\n", IsHeap(heap, size));
+  printf("is heap? %d\n", IsMinHeap(heap, size));
 
   printf("\n----- Testing RemoveMinimum -----\n");
   RemoveMinimum(heap, &size);
@@ -48,16 +48,16 @@ int main() {
 
   printf("\n----- Testing BuildHeap -----\n");
 
-  int array[6] = {2,7,4,1,6,5};
-  int size_a = LENGTH(array);
+  int built_heap[6] = {2,7,4,1,6,5};
+  int size_a = LENGTH(built_heap);
 
-  BuildHeap(array, size_a);
+  BuildHeap(built_heap, size_a);
 
-  printf("root is %d\n", GetRoot(array));
-  printf("LeftChild of root is %d\n", LeftChild(array, 0, size));
-  printf("RightChild of root is %d\n", RightChild(array, 0, size));
+  printf("root is %d\n", GetRoot(built_heap));
+  printf("LeftChild of root is %d\n", LeftChild(built_heap, 0, size));
+  printf("RightChild of root is %d\n", RightChild(built_heap, 0, size));
 
-  printf("is heap? %d\n", IsHeap(heap, size));
+  printf("is heap? %d\n", IsMinHeap(built_heap, size));
 
 
 
@@ -75,7 +75,7 @@ int main() {
     BuildHeap(big, size_big);
   printf("elapsed time = %fs\n", Seconds()-start);
 
-  printf("is heap? %d\n", IsHeap(big, size_big));
+  printf("is heap? %d\n", IsMinHeap(big, size_big));
 
 
 #endif // BENCHMARK

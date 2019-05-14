@@ -6,6 +6,10 @@
 #define MAX_ELEM_VALUE 1000000
 #define LENGTH(x) (sizeof(x)/sizeof((x)[0]))
 
+#define MAX_HEAP_ORDERING >=
+#define MIN_HEAP_ORDERING <=
+#define HEAP_ORDERING MIN_HEAP_ORDERING // Change this to change the ordering.
+
 int GetRoot(const int heap[]) {
   return heap[0];
 }
@@ -59,7 +63,7 @@ void Heapify(int heap[], const int i, const size_t size) {
   int j[2] = {GetLeftIndex(heap, i, size), GetRightIndex(heap, i, size)};
 
   for (int k = 0; k <= 1; ++k) {
-    if (j[k] <= size && heap[j[k]] <= heap[m]) {
+    if (j[k] <= size && heap[j[k]] HEAP_ORDERING heap[m]) {
       m = j[k];
     }
   }
@@ -86,10 +90,19 @@ void BuildHeap(int array[], const size_t size) {
   }
 }
 
-int IsHeap(const int array[], const size_t size) {
+int IsMinHeap(const int array[], const size_t size) {
   for (size_t i = 0; i <= (size-2)/2; i++) { // From root untill last internal node.
-    if (LeftChild(array, i, size) < array[i]) return 0; // If left child is greater.
+    if (LeftChild(array, i, size) < array[i]) return 0; // If left child is smaller.
     if ( GetRightIndex(array, i, size) != -1 && array[2*(i+1)] < array[i] ) return 0;
+  }
+  return 1;
+}
+
+
+int IsMaxHeap(const int array[], const size_t size) {
+  for (size_t i = 0; i <= (size-2)/2; i++) { // From root untill last internal node.
+    if (LeftChild(array, i, size) > array[i]) return 0; // If left child is greater.
+    if ( GetRightIndex(array, i, size) != -1 && array[2*(i+1)] > array[i] ) return 0;
   }
   return 1;
 }
