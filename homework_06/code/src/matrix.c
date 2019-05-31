@@ -4,6 +4,7 @@
 
 #define MAX_ELEM_VALUE 8
 
+
 IntMatrix AllocateIntMatrix(const size_t size) {
   int** A = (int** )malloc(sizeof(int* ) * size);
   for (size_t i = 0; i < size; i++) {
@@ -12,17 +13,25 @@ IntMatrix AllocateIntMatrix(const size_t size) {
   IntMatrix MAT = {A, size};
   return MAT;
 }
+
+
 void DeallocateIntMatrix(IntMatrix A) {
   for (size_t i = 0; i < A.size; i++) {
     free(A.matrix[i]);
   }
   free(A.matrix);
 }
+
+
+
 void SetZeroDiag(IntMatrix A) {
  for (size_t i=0; i< A.size; i++) {
      A.matrix[i][i] = 0;
  }
 }
+
+
+
 void RandomlyFillIntMatrix(IntMatrix A)
 {
  int elem = 0;
@@ -34,6 +43,8 @@ void RandomlyFillIntMatrix(IntMatrix A)
  }
  //SetZeroDiag(A);
 }
+
+
 
 void RandomlyFillSparseIntMatrix(IntMatrix A, int s) {
  for (size_t i=0; i< A.size; i++) {

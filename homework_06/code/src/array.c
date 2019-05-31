@@ -53,6 +53,7 @@ void UpdateDistance(Vertex* vert_q, Vertex* v, int new_w) {
   vert_q -> d = new_w;
 }
 
+
 void Relax(QArray* q, Vertex* u, Graph* g, int w, size_t i) {
   if ( (u -> d + w) < ((g -> v[i]).d) ) {
     UpdateDistance(&(q -> v[i]), &(g -> v[i]), u -> d + w);
