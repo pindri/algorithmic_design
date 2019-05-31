@@ -20,6 +20,7 @@ void InitializeGraph(Graph* g, IntMatrix weight_matrix) {
   }
 }
 
+
 void ResetGraph(Graph* g) {
   size_t size;
   size = g -> size;
@@ -29,12 +30,14 @@ void ResetGraph(Graph* g) {
   }
 }
 
+
 void DeallocateGraph(Graph* g) {
 
   free(g -> v);
   DeallocateIntMatrix(g -> weights);
 
 }
+
 
 void InitSSSP(Graph* g) {
   for(size_t i = 0; i < g -> size; i++) {

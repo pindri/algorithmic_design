@@ -2,9 +2,7 @@
 #include <sys/resource.h>
 #include <unistd.h>
 
-/*
- * Return the second elapsed since Epoch (00:00:00 UTC, January 1, 1970)
- */
+// Return the second elapsed since Epoch (00:00:00 UTC, January 1, 1970)
 double Seconds() {
 
   struct timeval tmp;

@@ -6,9 +6,7 @@
 
 
 
-/**
- * Computes base^exp, returning an integer.
- */
+// Computes base^exp, returning an integer.
 int IntPow(int base, int exp) {
   int result = 1;
   while (exp) {
@@ -19,9 +17,7 @@ int IntPow(int base, int exp) {
   return result;
 }
 
-/**
- * Prints an integer array, requires its size as input.
- */
+
 void PrintArray(const int array[], const size_t size) {
   for (size_t i = 0; i < size; i++) {
     printf("%d ", array[i]);
@@ -29,9 +25,7 @@ void PrintArray(const int array[], const size_t size) {
   printf("\n");
 }
 
-/**
- * Prints a float array, requires its size as input.
- */
+
 void PrintFloatArray(const float array[], const size_t size) {
   for (size_t i = 0; i < size; i++) {
     printf("%.3f ", array[i]);
@@ -39,18 +33,15 @@ void PrintFloatArray(const float array[], const size_t size) {
   printf("\n");
 }
 
-/**
- * Randomly fills an integer array with positive values <= MAX_ELEM_VALUE.
- */
+
 void RandomlyFillArray(int array[], const size_t size) {
   for (int i = 0; i < size; i++) {
     array[i] = rand() % MAX_ELEM_VALUE;
   }
 }
 
-/**
- * Randomly fills an integer array with positive values of n digits.
- */
+
+// Randomly fills an integer array with positive values of n digits.
 void RandomNDigitsFillArray(int array[], const size_t size, const int n) {
   for (int i = 0; i < size; i++) {
     array[i] = rand() % ( IntPow(10, n) - IntPow(10, n-1) ) + IntPow(10, n-1);
@@ -68,18 +59,15 @@ void UniformFillArray(float array[], const size_t size) {
   }
 }
 
-/**
- * Fills an integer array with zeroes.
- */
+
 void ZeroFillArray(int array[], const size_t size) {
   for (int i = 0; i < size; i++) {
     array[i] = 0;
   }
 }
 
-/**
- * Swaps array[i] and array [m].
- */
+
+
 void Swap(int array[], const int i, const int m, const size_t size) {
   if (i <= size && m <= size) {
     int tmp1 = array[i];
@@ -89,9 +77,8 @@ void Swap(int array[], const int i, const int m, const size_t size) {
   }
 }
 
-/**
- * Swaps array[i] and array [m].
- */
+
+
 void SwapFloat(float array[], const int i, const int m, const size_t size) {
   if (i <= size && m <= size) {
     float tmp1 = array[i];

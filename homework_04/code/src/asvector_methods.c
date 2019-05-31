@@ -1,12 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h> 
-#include "macro.h" 
-#include "asvector.h"  
+#include <stdlib.h>
+#include "macro.h"
+#include "asvector.h"
 
 
-/*
- * Initialises the AsVector struct
- */
 void InitAsVector(AsVector* v, size_t capacity) {
 
   v -> data = malloc( capacity * sizeof *(v->data) );
@@ -19,13 +16,11 @@ void InitAsVector(AsVector* v, size_t capacity) {
 }
 
 
-/*
- * Reallocates a AsVector struct, with size new_size
- */
+
 void ResizeAsVector(AsVector* v, size_t new_size) {
-  float* tmp; // so that if realloc returns null, it's safer
+  float* tmp; // So that if realloc returns null, it's safer.
   tmp = realloc(v -> data, new_size * sizeof *(v->data) );
-  // if not tmp could not realloc, else
+  // If not tmp could not realloc, else.
   if (!tmp) {
     printf("ERROR, could not reallocate. %f", 1./0.);
   } else {

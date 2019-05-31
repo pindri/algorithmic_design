@@ -3,7 +3,6 @@
 #include "sort.h"
 
 
-
 void ReverseArray(int array[], const size_t size) {
   int i = size - 1;
   int j = 0;
@@ -15,11 +14,13 @@ void ReverseArray(int array[], const size_t size) {
   }
 }
 
+
 void OrderFill(int array[], const size_t size) {
   for(size_t i = 0; i < size; i++) {
     array[i] = i+1;
   }
 }
+
 
 void GenerateBest(int array[], size_t begin, size_t end, const size_t size) {
   int count = end - begin;
@@ -30,8 +31,9 @@ void GenerateBest(int array[], size_t begin, size_t end, const size_t size) {
   GenerateBest(array, middle + 1, end, size);
 }
 
+
 void BestQuick(int array[], const size_t size) {
   OrderFill(array, size);
   GenerateBest(array, 0, size-1, size);
-} 
+}
 

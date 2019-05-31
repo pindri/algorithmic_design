@@ -10,7 +10,7 @@
 
 
 void InsertionSort(int array[], const size_t size) {
-  
+
   size_t j = 0;
 
   for (size_t i = 1; i < size; i++) {
@@ -53,8 +53,8 @@ void QuickSort(int array[], int i, int r, const size_t size) {
     QuickSort(array, p+1, r, size);
   }
 }
-  
-  
+
+
 
 void HeapSort(int array[], const size_t _size) {
   size_t size = _size;
@@ -113,7 +113,7 @@ void RadixSort_aux (int A[], const size_t size, const int divider) {
     A[i] = B[i];
   }
 }
-  
+
 
 
 void RadixSort (int array[], const size_t size, const int digits) {
@@ -128,9 +128,9 @@ void RadixSort (int array[], const size_t size, const int digits) {
 }
 
 
+// Basically insertion sort with doubles.
 void BucketSort_aux(float array[], const size_t size) {
-  // basically insertion sort with doubles.
-  
+
   size_t j = 0;
 
   for (size_t i = 1; i < size; i++) {
@@ -165,7 +165,7 @@ void BucketSort (float array[], const size_t size) {
     }
     DeleteAsVector(&B[j]);
   }
- 
+
 }
 
 
@@ -187,13 +187,12 @@ int SelectPivot(int l, int r) {
 int Select(int array[], int i, int l, int r, const size_t size) {
 
   int j = SelectPivot(l, r);
-//  printf("mid = %d\n", j);
 
   int k = Partition(array, l, r, j, size);
 
   if (i == k) {
     return array[k];
-  } else { 
+  } else {
     if (i < k) {
       return Select(array, i, l, k-1, size);
     } else {
