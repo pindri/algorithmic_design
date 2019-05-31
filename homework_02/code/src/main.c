@@ -7,6 +7,7 @@
 #include "matrix_struct.h"
 
 
+// Timing function.
 double get_execution_time(const struct timespec b_time, const struct timespec e_time) {
   return (e_time.tv_sec-b_time.tv_sec) + (e_time.tv_nsec-b_time.tv_nsec)/1E9;
 }
@@ -14,10 +15,17 @@ double get_execution_time(const struct timespec b_time, const struct timespec e_
 
 int main(int argc, char* argv[]) {
 
-  (void)argc; // The compiler will not complain about 'argc' being unused.
+  if (argc != 2) {
+    printf("The code must be run with the length of the chain as only argument!\n");
+    return 1;
+  }
 
   // Number of matrices.
   const unsigned int n = atoi(argv[1]);
+
+  if (n > 40) {
+    printf("WARNING, the chain length excedes the default maximum!\n");
+  }
 
 #ifndef BENCHMARK
   printf("\nNumber of matrices in the chain, n = %d\n", n);

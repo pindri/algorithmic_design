@@ -26,20 +26,19 @@ void DellocateINT_MATRIX(INT_MATRIX A) {
 
 
 
-void RandomlyFillINT_MATRIX(INT_MATRIX A)
-{
-   int elem = 0;
-   for (size_t i=0; i< A.row; i++) {
-     for (size_t j=0; j< A.col; j++) {
-       elem = rand()%(2*MAX_ELEM_VALUE)-MAX_ELEM_VALUE;
-       A.matrix[i][j] = elem;
-     }
+void RandomlyFillINT_MATRIX(INT_MATRIX A) {
+  int elem = 0;
+  for (size_t i=0; i< A.row; i++) {
+   for (size_t j=0; j< A.col; j++) {
+     elem = rand()%(2*MAX_ELEM_VALUE)-MAX_ELEM_VALUE;
+     A.matrix[i][j] = elem;
    }
+  }
 }
 
 
 
-int NaiveINT_MATRIXMult(INT_MATRIX A, INT_MATRIX B, INT_MATRIX C){
+int NaiveINT_MATRIXMult(INT_MATRIX A, INT_MATRIX B, INT_MATRIX C) {
 
   if (A.col != B.row) {
     return -1;
@@ -58,7 +57,7 @@ int NaiveINT_MATRIXMult(INT_MATRIX A, INT_MATRIX B, INT_MATRIX C){
 }
 
 
-
+// Performs element by element comparison, returns 1 if same matrix, 0 if not.
 int SameMATRIX(INT_MATRIX A, INT_MATRIX B) {
 
   if ((A.row != B.row) || (A.col != B.col)) {
@@ -83,7 +82,7 @@ INT_MATRIX NaiveMult(INT_MATRIX L[], int P[], unsigned int n, int* n_ops) {
 
   // Allocates the array of partial results for the sequencial product.
   INT_MATRIX R[n-1];
-  for (size_t i = 0; i < n-1; i++){
+  for (size_t i = 0; i < n-1; i++) {
     R[i] = AllocateINT_MATRIX(P[0],P[i+2]);
   }
 
@@ -96,7 +95,7 @@ INT_MATRIX NaiveMult(INT_MATRIX L[], int P[], unsigned int n, int* n_ops) {
   }
 
   // Free resources.
-  for (size_t i = 0; i < n-2 ; i++){
+  for (size_t i = 0; i < n-2 ; i++) {
     DellocateINT_MATRIX(R[i]);
   }
 
