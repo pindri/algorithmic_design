@@ -30,12 +30,15 @@ int main() {
 
 #else
 
+
+  /**** TESTING IMPLEMENTED FUNCTIONS ****/
+
   int heap[6] = {1,2,4,7,6,5};
   int size = LENGTH(heap);
 
   printf("root is %d\n", GetRoot(heap));
   printf("size is %d\n", size);
-  printf("is heap? %d\n", IsMinHeap(heap, size));
+  printf("is min heap? %d\n", IsMinHeap(heap, size));
 
   printf("\n----- Testing RemoveMinimum -----\n");
   RemoveMinimum(heap, &size);
@@ -57,7 +60,7 @@ int main() {
   printf("LeftChild of root is %d\n", LeftChild(built_heap, 0, size));
   printf("RightChild of root is %d\n", RightChild(built_heap, 0, size));
 
-  printf("is heap? %d\n", IsMinHeap(built_heap, size));
+  printf("is min heap? %d\n", IsMinHeap(built_heap, size));
 
 
 
@@ -75,7 +78,7 @@ int main() {
     BuildHeap(big, size_big);
   printf("elapsed time = %fs\n", Seconds()-start);
 
-  printf("is heap? %d\n", IsMinHeap(big, size_big));
+  printf("is min heap? %d\n", IsMinHeap(big, size_big));
 
 
 #endif // BENCHMARK

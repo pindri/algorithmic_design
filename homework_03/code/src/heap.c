@@ -10,9 +10,11 @@
 #define MIN_HEAP_ORDERING <=
 #define HEAP_ORDERING MIN_HEAP_ORDERING // Change this to change the ordering.
 
+
 int GetRoot(const int heap[]) {
   return heap[0];
 }
+
 
 int RightChild(const int heap[], const int i, const size_t size) {
   if ( (2*(i+1)+1) <= size ) {
@@ -22,6 +24,7 @@ int RightChild(const int heap[], const int i, const size_t size) {
   }
 }
 
+
 int LeftChild(const int heap[], const int i, const size_t size) {
   if ( 2*(i+1) <= size ) {
     return heap[2*(i+1)-1];
@@ -30,6 +33,7 @@ int LeftChild(const int heap[], const int i, const size_t size) {
   }
 }
 
+
 int GetRightIndex(const int heap[], const int i, const size_t size) {
   if ( (2*(i+1)+1) <= size ) {
     return 2*(i+1);
@@ -37,6 +41,7 @@ int GetRightIndex(const int heap[], const int i, const size_t size) {
     return -1;
   }
 }
+
 
 int GetLeftIndex(const int heap[], const int i, const size_t size) {
   if ( 2*(i+1) <= size ) {
@@ -90,6 +95,7 @@ void BuildHeap(int array[], const size_t size) {
   }
 }
 
+
 int IsMinHeap(const int array[], const size_t size) {
   for (size_t i = 0; i <= (size-2)/2; i++) { // From root untill last internal node.
     if (LeftChild(array, i, size) < array[i]) return 0; // If left child is smaller.
@@ -106,6 +112,7 @@ int IsMaxHeap(const int array[], const size_t size) {
   }
   return 1;
 }
+
 
 void RandomlyFillArray(int array[], const size_t size) {
   for (int i = 0; i < size; i++) {
