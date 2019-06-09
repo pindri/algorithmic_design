@@ -217,12 +217,6 @@ $T_1$ can be obtained by a liner scan of $SA$, thus using $O(n)$ time and $O(1)$
 
 
   \begin{frame}{5. Induced sort all suffixes of $T$ from the sorted $LMS$-suffixes}\label{5}
-    The ordering of the $S$-suffixes proceeds in two steps:
-    \begin{enumerate}
-      \item Construct a \textit{pointer data structure} $\mathcal{P}$ and, combining it with the \textit{interior counter trick} induce the first $n_S - c_P$ $S$-suffixes;
-      \item Use \textit{Binary Search} and the \textit{Interior Counter Trick} on the last $c_P$ $S$-suffixes.
-    \end{enumerate}
-    \pause
     \begin{block}{Pointer Data Structure}
       \vspace{1pt}
       Built in linear time, indicates the bucket tails of a $S$-suffix in constant time. Occupies at most $c_P = cn/\log n$ words, placed at the end of $SA$. \hyperlink{AUX5.pointer}{\beamerbutton{AUX}}
@@ -231,6 +225,12 @@ $T_1$ can be obtained by a liner scan of $SA$, thus using $O(n)$ time and $O(1)$
       \vspace{1pt}
       Dynamically maintain the $RF$-pointers (rightmost free pointers) for each bucket. \hyperlink{AUX5.counter}{\beamerbutton{AUX}}
     \end{block}
+    \pause
+    The ordering of the $S$-suffixes proceeds in two steps:
+    \begin{enumerate}
+      \item Construct a \textit{pointer data structure} $\mathcal{P}$ and, combining it with the \textit{interior counter trick} induce the first $n_S - c_P$ $S$-suffixes;
+      \item Use \textit{Binary Search} and the \textit{Interior Counter Trick} on the last $c_P$ $S$-suffixes.
+    \end{enumerate}
   \end{frame}
 
 
@@ -238,7 +238,7 @@ $T_1$ can be obtained by a liner scan of $SA$, thus using $O(n)$ time and $O(1)$
     Suppose $L$-indices are already sorted in their buckets.
     \begin{lstlisting}
 def InducedSort(T, SA):
-  for i = n - 1 downto 0:
+  for i = nL downto 0:
     j = SA[i] - 1 # Indicizes the bucket.
     if T[j] is S-type:
       *RF[j] = j
@@ -301,9 +301,9 @@ def InteriorCounterTrick(SAs):
   SAs[0]=BH, SAs[m-2]=E, SAs[m-1]=BT
   # O(m) time.
   if SAs[m-1]=BT and
-    (SAs[m-2]=E or SAs[m-SAs[m-2]-3!=BH):
+    (SAs[m-2]=E or SAs[m-SAs[m-2]-3]!=BH):
     for i=1 upto m-3:
-      SAs[m-3+1]=Index(i)
+      SAs[m-2-i]=Index(i)
       SAs[m-2]++   # Acts as a counter.
     endfor
   endif
@@ -313,7 +313,7 @@ def InteriorCounterTrick(SAs):
   \begin{frame}[fragile]{AUX: Interior counter trick - 2}
     \begin{lstlisting}
   # O(m) time.
-  if SAs[m-1]=BT and SAs[m-SAs[m-2]-3=BH:
+  if SAs[m-1]=BT and SAs[m-SAs[m-2]-3]=BH:
     shift SAs[1,...,m-3] to SAs[2,...m-2]
     SAs[1]=Index(m-2)
     SAs[m-1]=R2
@@ -348,8 +348,8 @@ enddef
     \begin{lstlisting}
 def PointerDataStructure(T, SAs):
   SAs[i]=1 forall i in [1,b]
-  for i=b downto 1:
-    if T[i] is S-type: SAs[T[i]]++
+  for i=n-1 downto 0:
+    if T[i] is S-type and in [1,b]: SAs[T[i]]++
   endfor
     \end{lstlisting}
 
