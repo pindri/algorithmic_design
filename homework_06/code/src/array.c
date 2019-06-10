@@ -76,12 +76,17 @@ void DijkstraArray(Graph* g, size_t s) { // 's' is the starting vertex.
 
   while(steps < g -> size) { // When start == size, only one element left.
     u = ExtractMinQArray(&q); // u.index cointains the index of the minimum in g!
+    //printf("Extracted %ld\n", u.index);
 
-    for (size_t i = 0; i < g -> size; i++) {
-      // If non-null weight, then neighbour.
-      if ( (g -> weights).matrix[u.index][i] != 0 ) {
-        int w = (g -> weights).matrix[u.index][i];
-        Relax(&q, &u, g, w, i);
+    // Takes care of unreachable nodes.
+    if( u.d != INT_MAX) {
+      for (size_t i = 0; i < g -> size; i++) {
+        // If non-null weight, then neighbour.
+        if ( (g -> weights).matrix[u.index][i] != 0 && u.index != i) {
+          //printf("\tHas neig: %ld\n", i);
+          int w = (g -> weights).matrix[u.index][i];
+          Relax(&q, &u, g, w, i);
+        }
       }
     }
     steps += 1;

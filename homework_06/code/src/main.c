@@ -48,7 +48,7 @@ int main() {
   // Graphs must be initialised with a square matrix representing the graph.
   Graph g;
   IntMatrix w = AllocateIntMatrix(n);
-  RandomlyFillSparseIntMatrix(w, 3);
+  RandomlyFillSparseIntMatrix(w, 5); // The number determines the sparsity.
 
   printf("Matrix representation of the directed graph\n");
   for(size_t i = 0; i < n; i++) {

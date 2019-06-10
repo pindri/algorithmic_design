@@ -53,6 +53,10 @@ void InitSSSP(Graph* g) {
 void ShortestPath(Graph* g, size_t to) {
   Vertex v = g -> v[to]; // Destination vertex.
   int total_distance = v.d;
+  if (total_distance == INT_MAX || total_distance == -INT_MAX) {
+    printf("Going to: %ld. No path available.\n", to);
+    return;
+  }
   printf("Going to: %ld. Total distance: %d\t\t", to, total_distance);
   while (v.pred != NULL) {
     printf("%ld <- ", v.index);

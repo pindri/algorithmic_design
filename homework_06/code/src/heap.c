@@ -111,26 +111,38 @@ void DijkstraHeap(Graph* g, size_t s) { // 's' is the starting vertex.
 
   while (q.size > 0) {
     u = ExtractMinQHeap(&q);
-    // Now run through the neighbours.
-    for (size_t i = 0; i < g -> size; i++) {
-      // If weight is non null, then there is an edge.
-      if ( (g -> weights).matrix[u.index][i] != 0 ) {
+    // Takes care of unreachable nodes.
+    if (*(u.d) != INT_MAX) {
+      // Now run through the neighbours.
+      for (size_t i = 0; i < g -> size; i++) {
+        // If weight is non null, then there is an edge.
+        if ( (g -> weights).matrix[u.index][i] != 0 ) {
 
-        int w = (g -> weights).matrix[u.index][i];
-        int new_distance = *(u.d) + w;
-        if ( (new_distance) < ((g -> v[i]).d) ) {
+          int w = (g -> weights).matrix[u.index][i];
+          int new_distance = *(u.d) + w;
+          if ( (new_distance) < ((g -> v[i]).d) ) {
 
-          // Updating distances vector.
-          distance[i] = new_distance;
+            // Updating distances vector.
+            distance[i] = new_distance;
 
-          // Update QHeap.
-          Heapify(&q, 0);
+            // Updating distance and predecessor.
+            size_t pred_index = u.index;
+            (g -> v[i]).pred = &(g -> v[pred_index]);
+            (g -> v[i]).d = new_distance;
 
-          // Updating distance and predecessor.
-          size_t pred_index = u.index;
-          (g -> v[i]).pred = &(g -> v[pred_index]);
-          (g -> v[i]).d = new_distance;
 
+            // Finding updated element of queue.
+            size_t j = 0;
+            while(j < q.size) {
+              if ((q.h[j]).index == i) {break;}
+              j++;
+            }
+            // Restoring heap property.
+            while ( (j != 0) && ( *((q.h[j]).d) < *((q.h[GetParentIndex(j)]).d) )) {
+              Swap(&q, j, GetParentIndex(j));
+              j = GetParentIndex(j);
+            }
+          }
         }
       }
     }
