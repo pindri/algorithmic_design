@@ -235,7 +235,7 @@ $T_1$ can be obtained by a liner scan of $SA$, thus using $O(n)$ time and $O(1)$
 
 
   \begin{frame}[fragile]{5. Induced Sort Algorithm}
-    Suppose $L$-indices are already sorted in their buckets.
+    Suppose $L$-indices are already sorted in $SA[0, \dots , n_L]$.
     \begin{lstlisting}
 def InducedSort(T, SA):
   for i = nL downto 0:
@@ -252,7 +252,7 @@ enddef
   \end{frame}
 
   \begin{frame}{5. Induced sort all suffixes of $T$ from the sorted $LMS$-suffixes}
-    The first $n_S - c_P$ $S$-suffixes can be ordered in linear time with no additional workspace. The remaining suffixes can be sorted analogously, using binary search to find the tails of the buckets, since $c_P \log n = O(n)$ and time linearity is preserved.
+    The first $n_S - c_P$ $S$-suffixes can be ordered in linear time with no additional workspace. The remaining suffixes can be sorted without $\mathcal{P}$, using binary search to find the tails of the buckets: since $c_P \log n = O(n)$, time linearity is preserved.
 
     A stable, in place linear time merging can be used to merge the sorted $S$- and $L$-suffixes.
     \begin{center}
