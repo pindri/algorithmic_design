@@ -105,3 +105,4 @@ int MinElem(int array[], const size_t size) {
   }
   return min;
 }
+

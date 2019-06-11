@@ -27,8 +27,10 @@ int main() {
   FILE *quickf_b = fopen("QuickSort_best.dat", "a");
   FILE *insf_w = fopen("InsertionSort_worst.dat", "a");
   FILE *quickf_w = fopen("QuickSort_worst.dat", "a");
+  FILE *select = fopen("Select.dat", "a");
 
   for (int dim = 1000; dim < 50000; dim = dim + 1000) {
+    printf("dim: %d\n", dim);
 
     int bench[dim];
     int bench_size = LENGTH(bench);
@@ -67,11 +69,25 @@ int main() {
     end_timing = Seconds() - start_timing;
     fprintf(quickf_b,"%d\t%f\n",dim, end_timing);
 
+
+    // SELECT TAKES LINEAR TIME
+    double timetime = 0;
+    for (int i = 0; i < 10; i++) {
+      RandomlyFillArray(bench, bench_size);
+      int position = rand() % bench_size;
+      start_timing = Seconds();
+        Select(bench, position, 0, bench_size - 1, bench_size);
+      end_timing = Seconds() - start_timing;
+      timetime += end_timing;
+    } fprintf(select,"%d\t%f\n",dim, timetime/10.);
+
+
   }
     fclose(insf_b);
     fclose(quickf_b);
     fclose(insf_w);
     fclose(quickf_w);
+    fclose(select);
 
 
 
@@ -166,7 +182,7 @@ int main() {
   RandomlyFillArray(test, size_test);
   PrintArray(test, size_test);
 
-  int position = 13;
+  int position = 12;
 
   int prediction = Select(test, position, 0, size_test - 1, size_test);
 
