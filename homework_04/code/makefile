@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -O0 -ggdb -std=c11 -I$(IDIR)
 EXE = main.x
-BENCHMARK = bechmark.x
+BENCHMARK = benchmark.x
 D_FLAG = BENCHMARK
 
 SRC = $(wildcard src/*.c)
